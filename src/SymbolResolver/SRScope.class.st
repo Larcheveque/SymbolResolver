@@ -1,0 +1,60 @@
+Class {
+	#name : #SRScope,
+	#superclass : #Object,
+	#instVars : [
+		'aliases'
+	],
+	#category : #SymbolResolver
+}
+
+{ #category : #adding }
+SRScope >> addAlias: anAlias forEntity: aCorrespondingEntity [
+	self aliases
+		add:
+			(SRAliasDefinition new
+				alias: anAlias;
+				entity: aCorrespondingEntity;
+				yourself)
+]
+
+{ #category : #accessing }
+SRScope >> aliases [
+	^ aliases ifNil: [ aliases := OrderedCollection new ] ifNotNil: [ aliases ]
+]
+
+{ #category : #accessing }
+SRScope >> aliases: anObject [
+	aliases := anObject
+]
+
+{ #category : #helpers }
+SRScope >> createReferenceEntityFrom: aFmxEntity [ 
+	"I am a convenient function that do nothing because an identifier pointed this scope (because of an aliasing)"
+]
+
+{ #category : #accessing }
+SRScope >> hasAliases [
+	^ aliases notNil and: [ aliases notEmpty ]
+]
+
+{ #category : #testing }
+SRScope >> hasCurrentEntity [
+	^ false
+]
+
+{ #category : #convenient }
+SRScope >> mooseModel: aMooseModel [ 
+	""
+]
+
+{ #category : #accessing }
+SRScope >> reachableEntities [
+	^ self hasAliases
+		ifTrue: [ self aliases , self reachableEntitiesOwned ]
+		ifFalse: [ self reachableEntitiesOwned ]
+]
+
+{ #category : #accessing }
+SRScope >> reachableEntitiesOwned [
+	^ self subclassResponsibility 
+]
