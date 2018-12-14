@@ -25,28 +25,28 @@ SRReferenciesSolver >> defineAliasInCurrentScope: aString for: aBlockClosure [
 	self topScope addAlias: aString forEntity: aBlockClosure value
 ]
 
-{ #category : #accessing }
+{ #category : #initialization }
 SRReferenciesSolver >> initialize [
 	super initialize.
 	self scopes: Stack new
 ]
 
-{ #category : #accessing }
+{ #category : #'scopes management' }
 SRReferenciesSolver >> popScope [
 	^ self scopes pop
 ]
 
-{ #category : #accessing }
+{ #category : #'scopes management' }
 SRReferenciesSolver >> pushEntitiesAsScope: aCollectionOfEntities [
 	self pushScope: (SRCollectionScope reachableEntities: aCollectionOfEntities)
 ]
 
-{ #category : #accessing }
+{ #category : #'scopes management' }
 SRReferenciesSolver >> pushEntityAsScope: anEntity [
 	self pushScope: (SREntityScope entity: anEntity)
 ]
 
-{ #category : #accessing }
+{ #category : #'scopes management' }
 SRReferenciesSolver >> pushScope: aScope [
 	^ self scopes push: aScope
 ]
@@ -67,7 +67,7 @@ SRReferenciesSolver >> removeScope: aPSQLScope [
 	self scopes remove: aPSQLScope
 ]
 
-{ #category : #accessing }
+{ #category : #resolution }
 SRReferenciesSolver >> resolve: aChainOfIdentifiers [
 	"a collection of identifier will be for example {'myTable' . 'columnA'}"
 	self scopes
@@ -78,7 +78,7 @@ SRReferenciesSolver >> resolve: aChainOfIdentifiers [
 	SRReferenciesNotFound signalIdentifiers: aChainOfIdentifiers 
 ]
 
-{ #category : #accessing }
+{ #category : #resolution }
 SRReferenciesSolver >> resolve: aChainOfIdentifiers inScope: aScope [
 	^ self
 		reachableEntitiesFor: aScope
@@ -102,7 +102,7 @@ SRReferenciesSolver >> scopes: anObject [
 	scopes := anObject
 ]
 
-{ #category : #alias }
+{ #category : #accessing }
 SRReferenciesSolver >> topScope [
 	^ self scopes top
 ]
