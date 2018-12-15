@@ -8,7 +8,7 @@ Class {
 		'entity',
 		'isCurrentEntity'
 	],
-	#category : #SymbolResolver
+	#category : #'SymbolResolver-Scopes'
 }
 
 { #category : #accessing }

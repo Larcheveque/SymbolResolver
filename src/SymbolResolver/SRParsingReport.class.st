@@ -9,7 +9,7 @@ Class {
 	#instVars : [
 		'errors'
 	],
-	#category : #SymbolResolver
+	#category : #'SymbolResolver-Core'
 }
 
 { #category : #adding }

@@ -7,7 +7,7 @@ Class {
 	#instVars : [
 		'scopes'
 	],
-	#category : #SymbolResolver
+	#category : #'SymbolResolver-Core'
 }
 
 { #category : #manager }

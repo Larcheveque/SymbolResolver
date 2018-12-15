@@ -7,7 +7,7 @@ Trait {
 		'solver',
 		'errorReport'
 	],
-	#category : #SymbolResolver
+	#category : #'SymbolResolver-Core'
 }
 
 { #category : #accessing }

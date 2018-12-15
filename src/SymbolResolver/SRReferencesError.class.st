@@ -7,7 +7,7 @@ Class {
 	#instVars : [
 		'identifiers'
 	],
-	#category : #SymbolResolver
+	#category : #'SymbolResolver-Errors'
 }
 
 { #category : #signalling }

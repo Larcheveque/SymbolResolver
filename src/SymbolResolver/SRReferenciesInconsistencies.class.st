@@ -6,7 +6,7 @@ For example, in foo.bar, the resolver was able to resolve foo but not bar.
 Class {
 	#name : #SRReferenciesInconsistencies,
 	#superclass : #SRReferencesError,
-	#category : #SymbolResolver
+	#category : #'SymbolResolver-Errors'
 }
 
 { #category : #exceptioninstantiator }

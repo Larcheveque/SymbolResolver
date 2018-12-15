@@ -5,7 +5,7 @@ Class {
 		'associatedSolver',
 		'addedScopes'
 	],
-	#category : #SymbolResolver
+	#category : #'SymbolResolver-Core'
 }
 
 { #category : #'instance creation' }

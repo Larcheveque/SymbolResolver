@@ -7,7 +7,7 @@ Class {
 		'entity',
 		'next'
 	],
-	#category : #SymbolResolver
+	#category : #'SymbolResolver-Core'
 }
 
 { #category : #'instance creation' }
