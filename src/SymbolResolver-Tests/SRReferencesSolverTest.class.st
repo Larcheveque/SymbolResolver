@@ -23,7 +23,25 @@ SRReferencesSolverTest >> testCreateScopeManager [
 
 { #category : #tests }
 SRReferencesSolverTest >> testCurrentEntity [
-	self fail
+	| currentEntity currentEntity2 |
+	self should: [ referencesSolver currentEntity ] raise: SRNoCurrentEntityAvailable.
+	
+	currentEntity := Object new.
+	referencesSolver pushScope: (SREntityScope currentEntity: currentEntity).
+	self assert: referencesSolver currentEntity equals: currentEntity.
+	
+	referencesSolver pushScope: (SREntityScope entity: Object new).
+	self assert: referencesSolver currentEntity equals: currentEntity.
+	
+	referencesSolver pushScope: (SRCollectionScope reachableEntities: { Object new }).
+	self assert: referencesSolver currentEntity equals: currentEntity.
+	
+	currentEntity2 := Object new.
+	referencesSolver pushScope: (SREntityScope currentEntity: currentEntity2).
+	self assert: referencesSolver currentEntity equals: currentEntity2.
+	
+	referencesSolver popScope.
+	self assert: referencesSolver currentEntity equals: currentEntity.
 ]
 
 { #category : #tests }

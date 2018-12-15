@@ -17,7 +17,9 @@ SRReferencesSolver >> createScopeManager [
 
 { #category : #accessing }
 SRReferencesSolver >> currentEntity [
-	^ (self scopes detect: #hasCurrentEntity) currentEntity
+	^ (self scopes
+		detect: #hasCurrentEntity
+		ifNone: [ SRNoCurrentEntityAvailable signalReferencesResolver: self ]) currentEntity
 ]
 
 { #category : #alias }
