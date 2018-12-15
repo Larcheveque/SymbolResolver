@@ -38,7 +38,7 @@ SRSolverUserVisitor >> errorReport: anObject [
 
 { #category : #initialization }
 SRSolverUserVisitor >> initialiseSolver [
-	solver := SRReferenciesSolver new
+	solver := SRReferencesSolver new
 ]
 
 { #category : #scope }
@@ -64,7 +64,7 @@ SRSolverUserVisitor >> resolve: identifiers [
 { #category : #resolution }
 SRSolverUserVisitor >> resolveSilently: identifiers [
 	[ self resolve: identifiers ]
-		on: SRReferenciesInconsistencies , SRReferenciesNotFound
+		on: SRReferencesInconsistencies , SRReferencesNotFound
 		do: [ :err |  self errorReport addError: err ]
 ]
 
