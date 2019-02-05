@@ -23,6 +23,36 @@ SRParsingReport >> addWarning: anObject [
 	self warnings add: anObject
 ]
 
+{ #category : #catching }
+SRParsingReport >> catch: exceptionOrExceptionSet during: aBlock [
+	^ self
+		catch: exceptionOrExceptionSet
+		during: aBlock
+		isWarningIf: [ :e | e class = Warning ]
+]
+
+{ #category : #catching }
+SRParsingReport >> catch: exceptionOrExceptionSet during: aBlock isWarningIf: isWarningConditionBlock [
+	"Catches the exception provided as argument or any exception of exception set (if it is an exception set) during th execution of aBlock.
+	 If the isWarningConditionBlock evaluates to true with the exception caught, adds it to warning and resume it. Else adds it to errors and stop execution."
+	aBlock on: exceptionOrExceptionSet do: [ :exception |
+		(isWarningConditionBlock value: exception)
+			ifTrue: [
+				self addWarning: exception.
+				exception resume ]
+			ifFalse: [ 
+				self addError: exception ] ]
+]
+
+{ #category : #catching }
+SRParsingReport >> catchWarningsDuring: aBlock [
+	aBlock
+		on: Warning
+		do: [ :w |
+			self addWarning: w.
+			w resume ]
+]
+
 { #category : #accessing }
 SRParsingReport >> errors [
 	^ errors

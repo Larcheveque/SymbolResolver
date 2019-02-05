@@ -63,9 +63,9 @@ SRSolverUserVisitor >> resolve: identifiers [
 
 { #category : #resolution }
 SRSolverUserVisitor >> resolveSilently: identifiers [
-	[ self resolve: identifiers ]
-		on: SRReferencesInconsistencies , SRReferencesNotFound
-		do: [ :err |  self errorReport addError: err ]
+	self errorReport
+		catch: SRReferencesInconsistencies , SRReferencesNotFound
+		during: [ self resolve: identifiers ]
 ]
 
 { #category : #accessing }
