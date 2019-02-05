@@ -7,7 +7,8 @@ Class {
 	#name : #SRParsingReport,
 	#superclass : #Object,
 	#instVars : [
-		'errors'
+		'errors',
+		'warnings'
 	],
 	#category : #'SymbolResolver-Core'
 }
@@ -15,6 +16,11 @@ Class {
 { #category : #adding }
 SRParsingReport >> addError: anError [
 	^ self errors add: anError
+]
+
+{ #category : #adding }
+SRParsingReport >> addWarning: anObject [
+	self warnings add: anObject
 ]
 
 { #category : #accessing }
@@ -32,8 +38,19 @@ SRParsingReport >> ifNotEmpty: aBlock [
 	self errors ifNotEmpty: aBlock
 ]
 
-{ #category : #accessing }
+{ #category : #initialization }
 SRParsingReport >> initialize [
 	super initialize.
 	self errors: OrderedCollection new.
+	self warnings: OrderedCollection new
+]
+
+{ #category : #accessing }
+SRParsingReport >> warnings [
+	^ warnings
+]
+
+{ #category : #accessing }
+SRParsingReport >> warnings: anObject [
+	warnings := anObject
 ]
