@@ -33,6 +33,16 @@ SRReferencesSolver >> initialize [
 	self scopes: Stack new
 ]
 
+{ #category : #accessing }
+SRReferencesSolver >> peekScopeAtIndex: anInteger [
+	"DISCLAIMER:
+	 Returns the scope at index anInteger (index 1 is the top of the stack).
+	 This method is really specific and should usually NOT BE USED.
+	 Beware, if you use it you're problably doing it wrongly.
+	 However there are some special cases where you need to do it."
+	^ self scopes at: anInteger
+]
+
 { #category : #'scopes management' }
 SRReferencesSolver >> popScope [
 	^ self scopes pop
