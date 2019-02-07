@@ -99,9 +99,7 @@ SRReferencesSolver >> resolve: aChainOfIdentifiers inScope: aScope [
 			aChainOfIdentifiers entity: entity value.
 			aChainOfIdentifiers isLast
 				ifTrue: [ ^ aChainOfIdentifiers ]
-				ifFalse: [ [ (self resolve: aChainOfIdentifiers next inScope: entity) ]
-						on: NotFound
-						do: [ SRReferencesInconsistencies signalIdentifiers: aChainOfIdentifiers ] ] ]
+				ifFalse: [ self resolve: aChainOfIdentifiers next inScope: entity ] ]
 ]
 
 { #category : #accessing }
