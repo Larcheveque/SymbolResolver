@@ -27,6 +27,12 @@ SRReferencesSolver >> defineAliasInCurrentScope: aString for: aBlockClosure [
 	self topScope addAlias: aString forEntity: aBlockClosure value
 ]
 
+{ #category : #accessing }
+SRReferencesSolver >> detect: aBlock [
+	"Detects the scope for which aBlock evaluates to true."
+	^ self scopes detect: aBlock
+]
+
 { #category : #initialization }
 SRReferencesSolver >> initialize [
 	super initialize.
