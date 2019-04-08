@@ -10,6 +10,13 @@ Trait {
 	#category : #SymbolResolver
 }
 
+{ #category : #'entities creation' }
+SRSolverUserVisitor >> create: aClass from: aPWBASTGraphicComponent [
+	^ aClass new
+		mooseModel: self model;
+		yourself
+]
+
 { #category : #accessing }
 SRSolverUserVisitor >> currentEntity [
 	^ self solver currentEntity
@@ -89,4 +96,11 @@ SRSolverUserVisitor >> useCurrentEntity: anEntity during: aBlock [
 	self assert: self solver topScope = entityScope.
 	self popScope.
 	^ anEntity
+]
+
+{ #category : #scope }
+SRSolverUserVisitor >> useEntityNamed: aName ofType: aType during: aBlock [
+	^ self
+		useCurrentEntity: ((self model allWithType: aType) entityNamed: aName)
+		during: aBlock
 ]
