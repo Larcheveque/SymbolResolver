@@ -88,6 +88,11 @@ SRIdentifierWithNode >> printOn: aStream [
 	aStream nextPut: $)
 ]
 
+{ #category : #printing }
+SRIdentifierWithNode >> representationString [
+	^ String streamContents: [ :s | self printIdentifierPath: s ]
+]
+
 { #category : #accessing }
 SRIdentifierWithNode >> targetEntity [
 	^ self isLast
