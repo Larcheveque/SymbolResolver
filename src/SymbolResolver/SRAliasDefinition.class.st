@@ -5,7 +5,7 @@ Class {
 		'alias',
 		'entity'
 	],
-	#category : #SymbolResolver
+	#category : #'SymbolResolver-Core'
 }
 
 { #category : #accessing }

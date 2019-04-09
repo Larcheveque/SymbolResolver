@@ -7,7 +7,7 @@ Class {
 	#instVars : [
 		'reachableEntitiesOwned'
 	],
-	#category : #SymbolResolver
+	#category : #'SymbolResolver-Scopes'
 }
 
 { #category : #'instance creation' }

@@ -4,7 +4,7 @@ Class {
 	#instVars : [
 		'aliases'
 	],
-	#category : #SymbolResolver
+	#category : #'SymbolResolver-Scopes'
 }
 
 { #category : #adding }

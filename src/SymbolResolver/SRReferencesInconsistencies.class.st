@@ -4,13 +4,13 @@ I am an error that occurs when the solver start to find the reference but then f
 For example, in foo.bar, the resolver was able to resolve foo but not bar.
 "
 Class {
-	#name : #SRReferenciesInconsistencies,
+	#name : #SRReferencesInconsistencies,
 	#superclass : #SRReferencesError,
-	#category : #SymbolResolver
+	#category : #'SymbolResolver-Errors'
 }
 
 { #category : #exceptioninstantiator }
-SRReferenciesInconsistencies class >> signal: anIdentifier [
+SRReferencesInconsistencies class >> signal: anIdentifier [
 	^ self new
 		identifier: anIdentifier;
 		signal

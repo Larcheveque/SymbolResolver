@@ -4,7 +4,7 @@ Class {
 	#instVars : [
 		'scopes'
 	],
-	#category : #SymbolResolver
+	#category : #'SymbolResolver-Scopes'
 }
 
 { #category : #'instance creation' }
