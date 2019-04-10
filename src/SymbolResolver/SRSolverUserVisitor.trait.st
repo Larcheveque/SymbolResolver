@@ -11,7 +11,7 @@ Trait {
 }
 
 { #category : #'entities creation' }
-SRSolverUserVisitor >> create: aClass from: aPWBASTGraphicComponent [
+SRSolverUserVisitor >> create: aClass from: anASTNode [
 	^ aClass new
 		mooseModel: self model;
 		yourself
