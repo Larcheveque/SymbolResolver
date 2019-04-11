@@ -11,10 +11,16 @@ Trait {
 }
 
 { #category : #'entities creation' }
-SRSolverUserVisitor >> create: aClass from: anASTNode [
+SRSolverUserVisitor >> create: aClass [
 	^ aClass new
 		mooseModel: self model;
 		yourself
+]
+
+{ #category : #'entities creation' }
+SRSolverUserVisitor >> create: aClass from: anASTNode [
+	self flag: #TODO. "Create source anchor from ASTNode"
+	^ self create: aClass
 ]
 
 { #category : #accessing }
