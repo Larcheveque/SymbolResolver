@@ -25,6 +25,8 @@ SRSolverUserVisitor >> create: aClass from: anASTNode [
 		sourceAnchor:
 			(FamixPWBIndexedFileAnchor new
 				startPos: anASTNode startPosition;
+				mooseModel: self model;
+				fileName: (self file relativeTo: self model rootFolder) pathString;
 				endPos: anASTNode stopPosition;
 				yourself).
 	^ created
