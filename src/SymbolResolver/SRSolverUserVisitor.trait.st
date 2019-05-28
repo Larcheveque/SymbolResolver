@@ -19,8 +19,15 @@ SRSolverUserVisitor >> create: aClass [
 
 { #category : #'entities creation' }
 SRSolverUserVisitor >> create: aClass from: anASTNode [
-	self flag: #TODO. "Create source anchor from ASTNode"
-	^ self create: aClass
+	| created |
+	created := self create: aClass.
+	created
+		sourceAnchor:
+			(FamixPWBIndexedFileAnchor new
+				startPos: anASTNode startPosition;
+				endPos: anASTNode stopPosition;
+				yourself).
+	^ created
 ]
 
 { #category : #accessing }
