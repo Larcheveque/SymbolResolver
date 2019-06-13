@@ -1,31 +1,14 @@
+"
+I am a resolvable only identified by an identifier (like an instance variable or a property)
+"
 Class {
 	#name : #SRIdentifierWithNode,
-	#superclass : #Object,
+	#superclass : #SRResolvable,
 	#instVars : [
-		'identifier',
-		'node',
-		'entity',
-		'next'
+		'entity'
 	],
 	#category : #'SymbolResolver-Core'
 }
-
-{ #category : #'instance creation' }
-SRIdentifierWithNode class >> identifier: aStringIdentifier node: aPSQLASTIdentifier [
-	^ self new
-		identifier: aStringIdentifier;
-		node: aPSQLASTIdentifier;
-		yourself
-]
-
-{ #category : #'instance creation' }
-SRIdentifierWithNode class >> identifier: aStringIdentifier node: aPSQLASTIdentifier next: aNextPSQIdentifierWithNode [
-	^ self new
-		identifier: aStringIdentifier;
-		node: aPSQLASTIdentifier;
-		next: aNextPSQIdentifierWithNode;
-		yourself
-]
 
 { #category : #accessing }
 SRIdentifierWithNode >> entity [
@@ -35,67 +18,4 @@ SRIdentifierWithNode >> entity [
 { #category : #accessing }
 SRIdentifierWithNode >> entity: anObject [
 	entity := anObject
-]
-
-{ #category : #accessing }
-SRIdentifierWithNode >> identifier [
-	^ identifier
-]
-
-{ #category : #accessing }
-SRIdentifierWithNode >> identifier: anObject [
-	identifier := anObject
-]
-
-{ #category : #testing }
-SRIdentifierWithNode >> isLast [
-	^ self next isNil
-]
-
-{ #category : #accessing }
-SRIdentifierWithNode >> next [
-	^ next
-]
-
-{ #category : #accessing }
-SRIdentifierWithNode >> next: anObject [
-	next := anObject
-]
-
-{ #category : #accessing }
-SRIdentifierWithNode >> node [
-	^ node
-]
-
-{ #category : #accessing }
-SRIdentifierWithNode >> node: anObject [
-	node := anObject
-]
-
-{ #category : #printing }
-SRIdentifierWithNode >> printIdentifierPath: aStream [
-	aStream nextPutAll: self identifier.
-	self isLast
-		ifFalse: [ aStream nextPut: $..
-			self next printIdentifierPath: aStream ]
-]
-
-{ #category : #printing }
-SRIdentifierWithNode >> printOn: aStream [
-	super printOn: aStream.
-	aStream nextPut: $(.
-	self printIdentifierPath: aStream.
-	aStream nextPut: $)
-]
-
-{ #category : #printing }
-SRIdentifierWithNode >> representationString [
-	^ String streamContents: [ :s | self printIdentifierPath: s ]
-]
-
-{ #category : #accessing }
-SRIdentifierWithNode >> targetEntity [
-	^ self isLast
-		ifFalse: [ self next targetEntity ]
-		ifTrue: [ self entity ]
 ]
