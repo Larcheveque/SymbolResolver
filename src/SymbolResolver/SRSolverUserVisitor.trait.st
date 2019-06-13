@@ -106,6 +106,13 @@ SRSolverUserVisitor >> resolve: identifiers [
 ]
 
 { #category : #resolution }
+SRSolverUserVisitor >> resolve: identifiers onNotFoundDo: aBlock [
+	^ [ self solver resolve: identifiers ]
+		on: SRReferencesNotFound
+		do: [ aBlock value: identifiers ]
+]
+
+{ #category : #resolution }
 SRSolverUserVisitor >> resolveSilently: identifiers [
 	self errorReport
 		catch: SRReferencesInconsistencies , SRReferencesNotFound
