@@ -19,3 +19,11 @@ SRIdentifierWithNode >> entity [
 SRIdentifierWithNode >> entity: anObject [
 	entity := anObject
 ]
+
+{ #category : #resolution }
+SRIdentifierWithNode >> resolveInScope: aScope [
+	self
+		entity: (aScope detect: [ :anEntity | anEntity name = self identifier ]).
+	self isLast
+		ifFalse: [ self next resolveInScope: self entity ]
+]

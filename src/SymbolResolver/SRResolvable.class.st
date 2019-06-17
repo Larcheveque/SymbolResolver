@@ -101,6 +101,11 @@ SRResolvable >> representationString [
 	^ String streamContents: [ :s | self printIdentifierPath: s ]
 ]
 
+{ #category : #resolution }
+SRResolvable >> resolveInScope: aScope [ 
+	^ self subclassResponsibility 
+]
+
 { #category : #accessing }
 SRResolvable >> targetEntity [
 	^ self isLast

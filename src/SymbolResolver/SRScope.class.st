@@ -32,6 +32,11 @@ SRScope >> createReferenceEntityFrom: aFmxEntity [
 	"I am a convenient function that do nothing because an identifier pointed this scope (because of an aliasing)"
 ]
 
+{ #category : #iterator }
+SRScope >> detect: aBlockClosure [ 
+	^ self reachableEntitiesOwned detect: aBlockClosure
+]
+
 { #category : #accessing }
 SRScope >> hasAliases [
 	^ aliases notNil and: [ aliases notEmpty ]
@@ -57,4 +62,9 @@ SRScope >> reachableEntities [
 { #category : #accessing }
 SRScope >> reachableEntitiesOwned [
 	^ self subclassResponsibility 
+]
+
+{ #category : #iterator }
+SRScope >> select: aBlockClosure [
+	^ self reachableEntitiesOwned select: aBlockClosure
 ]
