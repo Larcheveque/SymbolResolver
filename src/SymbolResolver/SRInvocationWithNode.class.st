@@ -47,10 +47,13 @@ SRInvocationWithNode >> entity [
 ]
 
 { #category : #resolution }
-SRInvocationWithNode >> resolveInScope: aScope [ 
+SRInvocationWithNode >> resolveInScope: aScope [
 	^ (aScope
-		select: [ :entity | entity name = self identifier ]) ifEmpty: [ NotFound signal ] ifNotEmpty: 
-		 [ :entities | 
+		select: [ :anEntity | 
+			anEntity name = self identifier
+				and: [ self checkKindOfEntity: anEntity ] ])
+		ifEmpty: [ NotFound signal ]
+		ifNotEmpty: [ :entities | 
 			self candidates: entities.
 			self isLast
 				ifTrue: [ ^ self ]

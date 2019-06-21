@@ -14,6 +14,13 @@ Class {
 }
 
 { #category : #'instance creation' }
+SRResolvable class >> identifier: anIdentifier expectedKind: aKind node: aNode [ 
+	^ (self identifier: anIdentifier node: aNode)
+		expectedKind: aKind;
+		yourself
+]
+
+{ #category : #'instance creation' }
 SRResolvable class >> identifier: aStringIdentifier node: aPSQLASTIdentifier [
 	^ self new
 		identifier: aStringIdentifier;
@@ -28,6 +35,12 @@ SRResolvable class >> identifier: aStringIdentifier node: aPSQLASTIdentifier nex
 		node: aPSQLASTIdentifier;
 		next: aNextPSQIdentifierWithNode;
 		yourself
+]
+
+{ #category : #resolution }
+SRResolvable >> checkKindOfEntity: anEntity [
+	self expectedKind ifNil: [ ^ true ].
+	^ anEntity isKindOf: self expectedKind
 ]
 
 { #category : #accessing }
