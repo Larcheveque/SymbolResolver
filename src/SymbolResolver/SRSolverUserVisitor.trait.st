@@ -91,6 +91,11 @@ SRSolverUserVisitor >> popScope [
 ]
 
 { #category : #scope }
+SRSolverUserVisitor >> pushAsScopeAll: aType ofModel: aModel [ 
+	self solver pushAsScopeAll: aType ofModel: aModel 
+]
+
+{ #category : #scope }
 SRSolverUserVisitor >> pushEntitiesAsScope: aCollectionOfEntities [
 	self solver pushEntitiesAsScope: aCollectionOfEntities
 ]

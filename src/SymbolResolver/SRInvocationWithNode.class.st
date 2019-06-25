@@ -48,6 +48,8 @@ SRInvocationWithNode >> entity [
 
 { #category : #resolution }
 SRInvocationWithNode >> resolveInScope: aScope [
+	(aScope canContainsEntitiesOfType: self expectedKind)
+		ifFalse: [ NotFound signal ].
 	^ (aScope
 		select: [ :anEntity | 
 			anEntity name = self identifier

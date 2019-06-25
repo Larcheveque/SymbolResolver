@@ -54,6 +54,16 @@ SRReferencesSolver >> popScope [
 	^ self scopes pop
 ]
 
+{ #category : #push }
+SRReferencesSolver >> pushAsScopeAll: aType ofModel: aModel [
+	self
+		pushScope:
+			(SRModelBasedScope new
+				model: aModel;
+				entityType: aType;
+				yourself)
+]
+
 { #category : #'scopes management' }
 SRReferencesSolver >> pushEntitiesAsScope: aCollectionOfEntities [
 	self pushScope: (SRCollectionScope reachableEntities: aCollectionOfEntities)
