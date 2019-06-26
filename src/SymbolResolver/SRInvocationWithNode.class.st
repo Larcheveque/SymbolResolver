@@ -19,6 +19,12 @@ SRInvocationWithNode class >> identifier: anIdentifier node: aNode expectedKind:
 		yourself
 ]
 
+{ #category : #hooks }
+SRInvocationWithNode >> applyReplacementStrategyWithCurrentEntity: aCurrentEntity [
+	self
+		candidates: (self notFoundReplacementEntity cull: self cull: aCurrentEntity)
+]
+
 { #category : #accessing }
 SRInvocationWithNode >> arguments [
 	^ arguments
@@ -57,6 +63,7 @@ SRInvocationWithNode >> resolveInScope: aScope [
 		ifEmpty: [ NotFound signal ]
 		ifNotEmpty: [ :entities | 
 			self candidates: entities.
+			self triggerFoundActionWithCurrentEntity: #TODO.
 			self isLast
 				ifTrue: [ ^ self ]
 				ifFalse: [ SRNotSupportedYetFunctionnality signal ] ]

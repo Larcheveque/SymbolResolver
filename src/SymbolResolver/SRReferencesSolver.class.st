@@ -105,7 +105,8 @@ SRReferencesSolver >> resolve: aChainOfIdentifiers [
 				on: NotFound
 				do: [ "do nothing to try superior scope" ] ].
 	aChainOfIdentifiers hasReplacementStrategy
-		ifTrue: [ aChainOfIdentifiers applyReplacementStrategy ]
+		ifTrue: [ aChainOfIdentifiers applyReplacementStrategyWithCurrentEntity: self currentEntity.
+			^ aChainOfIdentifiers triggerFoundActionWithCurrentEntity: self currentEntity ]
 		ifFalse: [ SRReferencesNotFound signalIdentifiers: aChainOfIdentifiers ]
 ]
 

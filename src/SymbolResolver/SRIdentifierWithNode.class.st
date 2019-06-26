@@ -10,6 +10,12 @@ Class {
 	#category : #'SymbolResolver-Core'
 }
 
+{ #category : #hooks }
+SRIdentifierWithNode >> applyReplacementStrategyWithCurrentEntity: aCurrentEntity [
+	self
+		entity: (self notFoundReplacementEntity cull: self cull: aCurrentEntity)
+]
+
 { #category : #accessing }
 SRIdentifierWithNode >> entity [
 	^ entity
@@ -28,6 +34,7 @@ SRIdentifierWithNode >> resolveInScope: aScope [
 				detect: [ :anEntity | 
 					anEntity name = self identifier
 						and: [ self checkKindOfEntity: anEntity ] ]).
+	self triggerFoundActionWithCurrentEntity: #TODO.
 	self isLast
 		ifFalse: [ self next resolveInScope: self entity ]
 ]

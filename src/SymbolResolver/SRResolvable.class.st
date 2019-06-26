@@ -39,6 +39,11 @@ SRResolvable class >> identifier: aStringIdentifier node: aPSQLASTIdentifier nex
 		yourself
 ]
 
+{ #category : #hooks }
+SRResolvable >> applyReplacementStrategyWithCurrentEntity: aCurrentEntity [
+	self subclassResponsibility 
+]
+
 { #category : #resolution }
 SRResolvable >> checkKindOfEntity: anEntity [
 	self expectedKind ifNil: [ ^ true ].
@@ -151,4 +156,9 @@ SRResolvable >> targetEntity [
 	^ self isLast
 		ifFalse: [ self next targetEntity ]
 		ifTrue: [ self entity ]
+]
+
+{ #category : #hooks }
+SRResolvable >> triggerFoundActionWithCurrentEntity: aCurrentEntity [
+	^ self foundAction cull: self cull: aCurrentEntity
 ]
