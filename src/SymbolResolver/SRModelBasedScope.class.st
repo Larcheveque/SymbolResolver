@@ -39,6 +39,16 @@ SRModelBasedScope >> model: anObject [
 ]
 
 { #category : #accessing }
+SRModelBasedScope >> printOn: aStream [
+	super printOn: aStream.
+	aStream << $(.
+	self model printOn: aStream.
+	aStream << '->'.
+	self entityType printOn: aStream.
+	aStream << $)
+]
+
+{ #category : #accessing }
 SRModelBasedScope >> reachableEntitiesOwned [
 	^ self model allWithType: self entityType
 ]

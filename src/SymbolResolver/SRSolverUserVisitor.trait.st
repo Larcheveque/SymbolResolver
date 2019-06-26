@@ -81,6 +81,11 @@ SRSolverUserVisitor >> errorReport: anObject [
 ]
 
 { #category : #initialization }
+SRSolverUserVisitor >> initialiseFutureSolver [
+	solver := SRFutureReferencesSolver new
+]
+
+{ #category : #initialization }
 SRSolverUserVisitor >> initialiseSolver [
 	solver := SRReferencesSolver new
 ]

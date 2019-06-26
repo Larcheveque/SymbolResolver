@@ -8,7 +8,9 @@ Class {
 		'identifier',
 		'node',
 		'next',
-		'expectedKind'
+		'expectedKind',
+		'foundAction',
+		'notFoundReplacementEntity'
 	],
 	#category : #'SymbolResolver-Core'
 }
@@ -59,6 +61,21 @@ SRResolvable >> expectedKind: anObject [
 ]
 
 { #category : #accessing }
+SRResolvable >> foundAction [
+	^ foundAction
+]
+
+{ #category : #accessing }
+SRResolvable >> foundAction: anObject [
+	foundAction := anObject
+]
+
+{ #category : #testing }
+SRResolvable >> hasReplacementStrategy [
+	^ self notFoundReplacementEntity notNil
+]
+
+{ #category : #accessing }
 SRResolvable >> identifier [
 	^ identifier
 ]
@@ -91,6 +108,16 @@ SRResolvable >> node [
 { #category : #accessing }
 SRResolvable >> node: anObject [
 	node := anObject
+]
+
+{ #category : #accessing }
+SRResolvable >> notFoundReplacementEntity [
+	^ notFoundReplacementEntity
+]
+
+{ #category : #accessing }
+SRResolvable >> notFoundReplacementEntity: anObject [
+	notFoundReplacementEntity := anObject
 ]
 
 { #category : #printing }

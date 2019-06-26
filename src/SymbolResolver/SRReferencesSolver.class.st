@@ -7,7 +7,7 @@ Class {
 	#instVars : [
 		'scopes'
 	],
-	#category : #'SymbolResolver-Core'
+	#category : #'SymbolResolver-Solver'
 }
 
 { #category : #manager }
@@ -98,12 +98,15 @@ SRReferencesSolver >> removeScope: aPSQLScope [
 { #category : #resolution }
 SRReferencesSolver >> resolve: aChainOfIdentifiers [
 	"a collection of identifier will be for example {'myTable' . 'columnA'}"
+
 	self scopes
 		do: [ :aScope | 
 			[ ^ self resolve: aChainOfIdentifiers inScope: aScope ]
 				on: NotFound
 				do: [ "do nothing to try superior scope" ] ].
-	SRReferencesNotFound signalIdentifiers: aChainOfIdentifiers 
+	aChainOfIdentifiers hasReplacementStrategy
+		ifTrue: [ aChainOfIdentifiers applyReplacementStrategy ]
+		ifFalse: [ SRReferencesNotFound signalIdentifiers: aChainOfIdentifiers ]
 ]
 
 { #category : #resolution }

@@ -1,0 +1,41 @@
+"
+I am a reference solver that does not directly resolve stuff but store all the resolution it will have to do and then resolve everything when #resolveStoredCases is called
+"
+Class {
+	#name : #SRFutureReferencesSolver,
+	#superclass : #SRReferencesSolver,
+	#instVars : [
+		'toResolve'
+	],
+	#category : #'SymbolResolver-Solver'
+}
+
+{ #category : #accessing }
+SRFutureReferencesSolver >> initialize [ 
+	super initialize.
+	self toResolve: OrderedCollection new
+]
+
+{ #category : #accessing }
+SRFutureReferencesSolver >> resolve: aChainOfIdentifiers [
+	self toResolve
+		addLast:
+			(SRReferenceToResolve
+				newFromScopes: self scopes
+				identifiers: aChainOfIdentifiers)
+]
+
+{ #category : #accessing }
+SRFutureReferencesSolver >> resolveImmediately: aChainOfIdentifiers [
+	^ super resolve: aChainOfIdentifiers 
+]
+
+{ #category : #accessing }
+SRFutureReferencesSolver >> toResolve [
+	^ toResolve
+]
+
+{ #category : #accessing }
+SRFutureReferencesSolver >> toResolve: anObject [
+	toResolve := anObject
+]
