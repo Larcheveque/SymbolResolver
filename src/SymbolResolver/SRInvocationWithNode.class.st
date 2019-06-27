@@ -53,7 +53,7 @@ SRInvocationWithNode >> entity [
 ]
 
 { #category : #resolution }
-SRInvocationWithNode >> resolveInScope: aScope [
+SRInvocationWithNode >> resolveInScope: aScope currentEntity: currentEntity [
 	(aScope canContainsEntitiesOfType: self expectedKind)
 		ifFalse: [ NotFound signal ].
 	^ (aScope
@@ -63,7 +63,7 @@ SRInvocationWithNode >> resolveInScope: aScope [
 		ifEmpty: [ NotFound signal ]
 		ifNotEmpty: [ :entities | 
 			self candidates: entities.
-			self triggerFoundActionWithCurrentEntity: #TODO.
+			self triggerFoundActionWithCurrentEntity: currentEntity.
 			self isLast
 				ifTrue: [ ^ self ]
 				ifFalse: [ SRNotSupportedYetFunctionnality signal ] ]

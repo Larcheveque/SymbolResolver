@@ -27,14 +27,14 @@ SRIdentifierWithNode >> entity: anObject [
 ]
 
 { #category : #resolution }
-SRIdentifierWithNode >> resolveInScope: aScope [
+SRIdentifierWithNode >> resolveInScope: aScope currentEntity: currentEntity [
 	self
 		entity:
 			(aScope
 				detect: [ :anEntity | 
 					anEntity name = self identifier
 						and: [ self checkKindOfEntity: anEntity ] ]).
-	self triggerFoundActionWithCurrentEntity: #TODO.
+	self triggerFoundActionWithCurrentEntity: currentEntity.
 	self isLast
-		ifFalse: [ self next resolveInScope: self entity ]
+		ifFalse: [ self next resolveInScope: self entity currentEntity: currentEntity ]
 ]

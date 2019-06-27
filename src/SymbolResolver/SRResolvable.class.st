@@ -147,7 +147,7 @@ SRResolvable >> representationString [
 ]
 
 { #category : #resolution }
-SRResolvable >> resolveInScope: aScope [ 
+SRResolvable >> resolveInScope: aScope currentEntity: currentEntity [ 
 	^ self subclassResponsibility 
 ]
 

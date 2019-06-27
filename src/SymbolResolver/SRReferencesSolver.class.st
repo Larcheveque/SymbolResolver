@@ -112,7 +112,7 @@ SRReferencesSolver >> resolve: aChainOfIdentifiers [
 
 { #category : #resolution }
 SRReferencesSolver >> resolve: aChainOfIdentifiers inScope: aScope [
-	^ aChainOfIdentifiers resolveInScope: aScope
+	^ aChainOfIdentifiers resolveInScope: aScope currentEntity: self currentEntity 
 ]
 
 { #category : #accessing }
