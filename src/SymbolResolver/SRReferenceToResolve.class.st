@@ -37,6 +37,24 @@ SRReferenceToResolve >> identifiers: anObject [
 	identifiers := anObject
 ]
 
+{ #category : #resolution }
+SRReferenceToResolve >> resolve [
+	self scopes
+		do: [ :aScope | 
+			[ ^ self resolve: self identifiers inScope: aScope ]
+				on: NotFound
+				do: [ "do nothing to try superior scope" ] ].
+	identifiers hasReplacementStrategy
+		ifTrue: [ identifiers applyReplacementStrategyWithCurrentEntity: self currentEntity.
+			^ identifiers triggerFoundActionWithCurrentEntity: self currentEntity ]
+		ifFalse: [ SRReferencesNotFound signalIdentifiers: identifiers ]
+]
+
+{ #category : #accessing }
+SRReferenceToResolve >> resolve: aChainOfIdentifiers inScope: aScope [
+	^ aChainOfIdentifiers resolveInScope: aScope currentEntity: self currentEntity 
+]
+
 { #category : #accessing }
 SRReferenceToResolve >> scopes [
 	^ scopes

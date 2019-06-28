@@ -155,6 +155,8 @@ SRSolverUserVisitor >> useCurrentEntity: anEntity during: aBlock [
 { #category : #scope }
 SRSolverUserVisitor >> useEntityNamed: aName ofType: aType during: aBlock [
 	^ self
-		useCurrentEntity: ((self model allWithType: aType) entityNamed: aName)
+		useCurrentEntity:
+			((self model entityStorage selectAllWithType: aType)
+				detect: [ :entity | entity name = aName ])
 		during: aBlock
 ]

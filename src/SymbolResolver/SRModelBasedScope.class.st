@@ -50,5 +50,5 @@ SRModelBasedScope >> printOn: aStream [
 
 { #category : #accessing }
 SRModelBasedScope >> reachableEntitiesOwned [
-	^ self model allWithType: self entityType
+	^ self model entityStorage selectAllWithType: self entityType
 ]

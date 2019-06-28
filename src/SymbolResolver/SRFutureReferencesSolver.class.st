@@ -30,6 +30,11 @@ SRFutureReferencesSolver >> resolveImmediately: aChainOfIdentifiers [
 	^ super resolve: aChainOfIdentifiers 
 ]
 
+{ #category : #resolution }
+SRFutureReferencesSolver >> resolveUnresolvedReferences [
+	self toResolve do: #resolve
+]
+
 { #category : #accessing }
 SRFutureReferencesSolver >> toResolve [
 	^ toResolve
