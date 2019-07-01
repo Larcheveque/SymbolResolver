@@ -50,6 +50,25 @@ SRReferencesSolverTest >> testDefineAliasInCurrentScopeFor [
 ]
 
 { #category : #tests }
+SRReferencesSolverTest >> testEnsureScopesAreCopied [
+	| firstScope scopesFirstState secondScope scopesSecondState |
+	firstScope := SREntityScope new.
+	secondScope := SREntityScope new.
+	referencesSolver pushScope: firstScope.
+	scopesFirstState := referencesSolver scopes.
+	self assert: scopesFirstState equals: {firstScope}.
+	referencesSolver pushScope: secondScope.
+	scopesSecondState := referencesSolver scopes.
+	self
+		assert: scopesSecondState
+		equals:
+			{secondScope.
+			firstScope}.
+	self deny: scopesFirstState == scopesSecondState.
+	self assert: scopesFirstState equals: {firstScope}
+]
+
+{ #category : #tests }
 SRReferencesSolverTest >> testPopScope [
 	| sizeBefore scope |
 	sizeBefore := referencesSolver scopes size.
