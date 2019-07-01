@@ -62,6 +62,6 @@ SRReferenceToResolve >> scopes [
 
 { #category : #accessing }
 SRReferenceToResolve >> scopes: anObject [
-	"Scopes are poped and pushed during the visit so we have to copy this mutating collection"
-	scopes := anObject copy
+	"Scopes are poped and pushed during the visit but the mechanism ensure that you can point a collection of scopes because a copy is done each time. This way its limitate the memory usage"
+	scopes := anObject
 ]

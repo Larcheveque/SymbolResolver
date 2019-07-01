@@ -10,6 +10,11 @@ Class {
 	#category : #'SymbolResolver-Solver'
 }
 
+{ #category : #'scopes management' }
+SRReferencesSolver >> copyScopes [
+	^ scopes := scopes copy
+]
+
 { #category : #manager }
 SRReferencesSolver >> createScopeManager [
 	^ SRScopeManager newAssociatedToSolver: self
@@ -51,7 +56,7 @@ SRReferencesSolver >> peekScopeAtIndex: anInteger [
 
 { #category : #'scopes management' }
 SRReferencesSolver >> popScope [
-	^ self scopes pop
+	^ self copyScopes pop
 ]
 
 { #category : #push }
@@ -76,7 +81,7 @@ SRReferencesSolver >> pushEntityAsScope: anEntity [
 
 { #category : #'scopes management' }
 SRReferencesSolver >> pushScope: aScope [
-	^ self scopes push: aScope
+	^ self copyScopes push: aScope
 ]
 
 { #category : #detect }
@@ -92,7 +97,7 @@ SRReferencesSolver >> reachableEntitiesFor: aScope detect: aBlockClosure ifFound
 
 { #category : #removing }
 SRReferencesSolver >> removeScope: aPSQLScope [
-	self scopes remove: aPSQLScope
+	self copyScopes remove: aPSQLScope
 ]
 
 { #category : #resolution }

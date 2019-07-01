@@ -67,14 +67,14 @@ SREntityScope >> isCurrentEntity: anObject [
 { #category : #printing }
 SREntityScope >> printOn: aStream [
 	super printOn: aStream.
-	aStream
-		<< $(.
+	aStream << $(.
 	aStream << $".
-	self entity name printOn: aStream.
-	aStream << '":'.
-	self entity class printOn: aStream.
-	aStream
-		<< $)
+	self entity
+		ifNil: [ aStream << 'No Entity' ]
+		ifNotNil: [ self entity name printOn: aStream.
+			aStream << '":'.
+			self entity class printOn: aStream ].
+	aStream << $)
 ]
 
 { #category : #accessing }
