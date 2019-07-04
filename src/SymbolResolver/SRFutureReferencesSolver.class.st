@@ -32,7 +32,9 @@ SRFutureReferencesSolver >> resolveImmediately: aChainOfIdentifiers [
 
 { #category : #resolution }
 SRFutureReferencesSolver >> resolveUnresolvedReferences [
-	self toResolve do: #resolve
+	self toResolve
+		do: #resolve
+		displayingProgress: 'References resolution'
 ]
 
 { #category : #accessing }
