@@ -54,7 +54,11 @@ SRInvocationWithNode >> entity [
 
 { #category : #resolution }
 SRInvocationWithNode >> resolveInScope: aScope currentEntity: currentEntity [
-	(aScope canContainsEntitiesOfType: self expectedKind)
+	(self expectedKind isCollection
+		ifTrue: [ self expectedKind
+				anySatisfy:
+					[ :expectedPossibility | aScope canContainsEntitiesOfType: expectedPossibility ] ]
+		ifFalse: [ aScope canContainsEntitiesOfType: self expectedKind ])
 		ifFalse: [ NotFound signal ].
 	^ (aScope
 		select: [ :anEntity | 

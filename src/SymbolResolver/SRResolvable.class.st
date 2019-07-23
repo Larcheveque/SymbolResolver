@@ -47,7 +47,10 @@ SRResolvable >> applyReplacementStrategyWithCurrentEntity: aCurrentEntity [
 { #category : #resolution }
 SRResolvable >> checkKindOfEntity: anEntity [
 	self expectedKind ifNil: [ ^ true ].
-	^ anEntity isKindOf: self expectedKind
+	^ self expectedKind isCollection
+		ifTrue: [ self expectedKind
+				anySatisfy: [ :expectedPossibility | anEntity isKindOf: expectedPossibility ] ]
+		ifFalse: [ anEntity isKindOf: self expectedKind ]
 ]
 
 { #category : #accessing }
