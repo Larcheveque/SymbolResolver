@@ -21,6 +21,7 @@ SRInvocationWithNode class >> identifier: anIdentifier node: aNode expectedKind:
 
 { #category : #hooks }
 SRInvocationWithNode >> applyReplacementStrategyWithCurrentEntity: aCurrentEntity [
+	aCurrentEntity isNullPatternObject ifTrue: [ ^ self ].
 	self
 		candidates: (self notFoundReplacementEntity cull: self cull: aCurrentEntity)
 ]
@@ -54,6 +55,7 @@ SRInvocationWithNode >> entity [
 
 { #category : #resolution }
 SRInvocationWithNode >> resolveInScope: aScope currentEntity: currentEntity [
+	(currentEntity isNullPatternObject) ifTrue: [ ^ self ].
 	(self expectedKind isCollection
 		ifTrue: [ self expectedKind
 				anySatisfy:

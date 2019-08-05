@@ -12,6 +12,7 @@ Class {
 
 { #category : #hooks }
 SRIdentifierWithNode >> applyReplacementStrategyWithCurrentEntity: aCurrentEntity [
+	aCurrentEntity isNullPatternObject ifTrue: [ ^ self ].
 	self
 		entity: (self notFoundReplacementEntity cull: self cull: aCurrentEntity)
 ]
@@ -28,6 +29,7 @@ SRIdentifierWithNode >> entity: anObject [
 
 { #category : #resolution }
 SRIdentifierWithNode >> resolveInScope: aScope currentEntity: currentEntity [
+	(currentEntity isNullPatternObject) ifTrue: [ ^ self ].
 	self
 		entity:
 			(aScope
