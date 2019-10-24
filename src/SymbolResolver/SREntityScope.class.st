@@ -64,6 +64,11 @@ SREntityScope >> isCurrentEntity: anObject [
 	isCurrentEntity := anObject
 ]
 
+{ #category : #accessing }
+SREntityScope >> isEntityScope [
+	^ true
+]
+
 { #category : #printing }
 SREntityScope >> printOn: aStream [
 	super printOn: aStream.

@@ -52,6 +52,11 @@ SRScope >> hasCurrentEntity [
 	^ false
 ]
 
+{ #category : #testing }
+SRScope >> isEntityScope [
+	^ false
+]
+
 { #category : #convenient }
 SRScope >> mooseModel: aMooseModel [ 
 	""
